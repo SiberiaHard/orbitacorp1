@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1>Создание обращения</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="from_field">От кого:</label>
+      {{ form.from_field }}
+    </div>
+    <div class="form-group">
+      <label for="to_field">Кому:</label>
+      {{ form.to_field }}
+    </div>
+    <div class="form-group">
+      <label for="appeal_field">Суть обращения:</label>
+      {{ form.appeal_field }}
+    </div>
+    <div class="form-group form-check">
+      {{ form.legal_reference }}
+      <label class="form-check-label" for="legal_reference">Ссылаться на законодательство Российской Федерации</label>
+    </div>
+    <div class="form-group form-check">
+      {{ form.document_reference }}
+      <label class="form-check-label" for="document_reference">Ссылаться на документ</label>
+    </div>
+    <div class="form-group">
+      <label for="document_text">Текст документа:</label>
+      {{ form.document_text }}
+    </div>
+    <button type="submit" class="btn btn-primary">Создать обращение</button>
+  </form>
+  {% if generated_appeal %}
+  <div class="mt-5">
+    <h2>Сгенерированное обращение:</h2>
+    <p>{{ generated_appeal }}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
